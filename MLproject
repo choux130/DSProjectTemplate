@@ -1,0 +1,14 @@
+name: ds_project
+
+docker_env:
+  image:  ds_project_template
+
+entry_points:
+  main:
+    parameters:
+      random_seed: {type: int, default: 123}
+      percent_train: {type: float, default: 0.6}
+      method: {type: string, default: "mean"}
+      criterion: {type: string, default: "mse" }
+      max_depth: {type: int, default: 1000}
+    command: "python code/05_Train_Python.py --random_seed {random_seed} --percent_train {percent_train} --method {method} --criterion {criterion} --max_depth {max_depth}"
