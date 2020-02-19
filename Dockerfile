@@ -1,5 +1,13 @@
 FROM continuumio/miniconda3
 
+#### Installing packages ======================================= 
+## currently have some problems and need more investigation.
+## install python pacakges based on conda environment.yml file
+# COPY environment.yml /.
+# RUN conda env create -f environment.yml --name myenv
+# RUN conda activate myenv
+
+## install python packages based on conda command directly
 RUN conda install -c conda-forge mlflow==1.6.0
 RUN conda install -c conda-forge boto3==1.11.15
 RUN conda install -c anaconda scipy=1.4.*
