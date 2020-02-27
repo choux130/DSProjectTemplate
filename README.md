@@ -25,6 +25,7 @@
         * r-arrow (<code>conda install -c conda-forge r-arrow==0.15.1</code>) -- for the parquet format file, [arrow R package](https://arrow.apache.org/docs/r/) 
         * r-dplyr (<code>conda install -c r r-dplyr==0.8.0.1</code>)
         * r-data.table(<code>conda install -c conda-forge r-data.table==1.12.2</code>)
+        * pandas (<code>conda install pandas=1.0.1</code>) -- because of the error <code>ImportError: cannot import name 'check_array_indexer' from 'pandas.core.indexers'....</code>, need to reinstall 
        
    * **Experiments**
        * jupyterlab (<code>conda install -c conda-forge jupyterlab==1.2.6</code>)
