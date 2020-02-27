@@ -2,11 +2,14 @@ suppressMessages(library(dplyr))
 
 # functions
 Encoder_numeric = function(train, num_variables, method){
+    # select numeric variables
     train_num = train %>% select(!!!num_variables)
     
+    # mean and std for later normalization
     summary_mean = train_num %>% summarise_at(num_variables, mean, na.rm = TRUE)
     summary_std = train_num %>% summarise_at(num_variables, sd, na.rm = TRUE)
 
+    # method for missing values imputation
     if (method == "mean") {
         summary_num = summary_mean
     }
@@ -14,6 +17,7 @@ Encoder_numeric = function(train, num_variables, method){
          summary_num = train_num %>% summarise_at(num_variables, median, na.rm = TRUE)
     }
     
+    # save the info to a list
     summary_num_list = list()
     for (i in 1:ncol(summary_num)){
         col_name = names(summary_num)[i]
@@ -23,8 +27,9 @@ Encoder_numeric = function(train, num_variables, method){
         
     }
     names(summary_num_list) = names(summary_num)
+    summary_num_list_json = summary_num_list %>% jsonlite::toJSON(.)
     
-    return(summary_num_list)
+    return(summary_num_list_json)
 }
 
 if (!interactive()){
@@ -40,8 +45,8 @@ if (!interactive()){
     # input
     train = arrow::read_parquet(paste0(project_dir, interim_folder, "train.parquet"))
     num_variables = train %>% select(-quality) %>% names(.)
-    
+
     # output and save
     encoder_num = Encoder_numeric(train, num_variables, method)
-    saveRDS(encoder_num, paste0(project_dir, processed_folder, "encoder_num.rds"))
+    jsonlite::write_json(encoder_num, paste0(project_dir, processed_folder, "encoder_num.json"))
 }

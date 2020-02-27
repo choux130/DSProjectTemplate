@@ -4,8 +4,8 @@ suppressMessages(library(dplyr))
 SplitData = function(raw_data, random_seed, percent_train){
     set.seed(random_seed)
     
-    train_index <- sample(1:nrow(raw_data), percent_train * nrow(raw_data))
-    test_index <- setdiff(1:nrow(raw_data), train_index)
+    train_index = sample(1:nrow(raw_data), percent_train * nrow(raw_data))
+    test_index = setdiff(1:nrow(raw_data), train_index)
 
     train = raw_data[train_index, ]
     test = raw_data[test_index, ]
@@ -20,14 +20,15 @@ if (!interactive()){
     percent_train = as.numeric(args[2])
     
     # file and directory info
-    file_name = 'wine-quality.csv'
+    file_name = 'winequality-red.csv'
     ini = commandArgs(trailingOnly = FALSE)
     project_dir = dirname(dirname(sub("--file=", "", ini[grep("--file=", ini)])))
     raw_folder = "/data/raw/"
     interim_folder = "/data/interim/"
 
     # input
-    raw_data = data.table::fread(paste0(project_dir, raw_folder, file_name), fill = TRUE)
+    raw_data = data.table::fread(paste0(project_dir, raw_folder, file_name), fill = TRUE) %>%
+        dplyr::as_tibble(.)
 
     # ouptut and save
     train_test = SplitData(raw_data, random_seed, percent_train)

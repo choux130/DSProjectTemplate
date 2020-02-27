@@ -10,13 +10,14 @@ FROM continuumio/miniconda3
 ## install python packages based on conda command directly
 RUN conda install -c conda-forge mlflow==1.6.0
 RUN conda install -c conda-forge boto3==1.11.15
-RUN conda install -c anaconda scipy=1.4.*
-RUN pip install -U numpy scipy scikit-learn==0.22.*
-RUN conda install -c r r-dplyr==0.8.*
-RUN conda install -c conda-forge r-arrow==0.15.*
-RUN conda install -c conda-forge pyarrow==0.15.*
-RUN conda install -c conda-forge jupyterlab==1.2.*
-RUN conda install -c conda-forge r-data.table==1.12.*
+RUN pip install azure-storage-blob==2.1.0
+RUN conda install -c anaconda scipy==1.4.0
+RUN conda install scikit-learn==0.22.1
+RUN conda install -c conda-forge pyarrow==0.15.1
+RUN conda install -c r r-base==3.6.1
+RUN conda install -c conda-forge r-arrow==0.15.1
+RUN conda install -c r r-dplyr==0.8.0
+RUN conda install -c conda-forge r-data.table==1.12.2
 
 USER root
 RUN mkdir /DS_project/
