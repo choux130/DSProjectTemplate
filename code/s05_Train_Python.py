@@ -68,9 +68,9 @@ if __name__ == "__main__":
     test_X = pd.read_parquet(project_dir + interim_folder + 'test_X.parquet')
     test_Y = pd.read_parquet(project_dir + interim_folder + 'test_Y.parquet')
     
-    # Launch the experiment on mlflow
-    experiment_name = "test_experiment"
-    mlflow.set_experiment(experiment_name)
+    # # Launch the experiment on mlflow
+    # experiment_name = "test_experiment"
+    # mlflow.set_experiment(experiment_name)
     
     with mlflow.start_run(nested=True):
         uri = os.getenv('MLFLOW_TRACKING_URI')
