@@ -19,8 +19,6 @@
         * mlflow (<code>pip install mlflow==1.6.0</code>)
         * boto3 (<code>conda install -c conda-forge boto3==1.11.15</code>) -- for S3 bucket
         * azure-storage-blob (<code>pip install azure-storage-blob==2.1.0</code>) -- for Azure Storage blob
-        * pandas (<code>conda install pandas=1.0.1</code>)
-        * scipy (<code>conda install -c anaconda scipy==1.4.1</code>)
         * scikit-learn (<code>conda install scikit-learn==0.22.1</code>)
         * pyarrow (<code>conda install -c conda-forge pyarrow==0.15.1</code>) -- for the parquet format file
         * r-base (<code>conda install -c r r-base==3.6.1</code>) 
